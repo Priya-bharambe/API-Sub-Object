@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,19 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'APISubObject';
+
+  apiUrl = 'http://jsonplaceholder.typicode.com/users';
+
+  apiData: any;
+
+  constructor(private http: HttpClient) {
+  }
+
+
+  ngOnInit() {
+    this.http.get(this.apiUrl).subscribe((data) => {
+      console.warn(data)
+      this.apiData = data;
+    })
+  }
 }
